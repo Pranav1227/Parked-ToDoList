@@ -31,7 +31,7 @@ export function ListView() {
           {hasActiveFilters ? <SearchX size={26} /> : <StickyIcon size={26} />}
         </div>
         <h3 className="empty-state-title">
-          {hasActiveFilters ? 'No matching notes in list' : 'No parked notes yet'}
+          {hasActiveFilters ? 'No matching notes in list' : 'No docked tasks yet'}
         </h3>
         <p className="empty-state-desc">
           {hasActiveFilters

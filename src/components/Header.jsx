@@ -99,7 +99,7 @@ export function Header({ quickAddInputRef, permission, onRequestPermission }) {
             <LayoutGrid size={18} strokeWidth={2.5} />
           </div>
           <h1 className="logo-title">
-            Parked
+            TaskDock
             <span className="logo-tag">Quick Capture</span>
           </h1>
         </div>
@@ -111,7 +111,7 @@ export function Header({ quickAddInputRef, permission, onRequestPermission }) {
             <input
               type="text"
               className="search-input"
-              placeholder="Search notes, context, or projects... ('/' to park)"
+              placeholder="Search notes, context, or projects... ('/' to dock)"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               aria-label="Search notes"

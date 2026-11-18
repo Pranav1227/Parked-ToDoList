@@ -2,15 +2,17 @@ import React, { createContext, useContext, useState, useEffect, useCallback, use
 import { DEFAULT_PROJECTS } from '../constants';
 import { getSafeStorageItem, setSafeStorageItem } from '../utils/storage';
 
-const STORAGE_KEY_PROJECTS = 'parked_projects_v2';
-const STORAGE_KEY_LAST_PROJECT = 'parked_last_project_v2';
+const STORAGE_KEY_PROJECTS = 'taskdock_projects_v2';
+const STORAGE_KEY_PROJECTS_LEGACY = 'parked_projects_v2';
+const STORAGE_KEY_LAST_PROJECT = 'taskdock_last_project_v2';
+const STORAGE_KEY_LAST_PROJECT_LEGACY = 'parked_last_project_v2';
 
 const ProjectsContext = createContext(null);
 
 export function ProjectsProvider({ children, onProjectDeleted }) {
   const [projects, setProjects] = useState(() => {
     try {
-      const saved = getSafeStorageItem(STORAGE_KEY_PROJECTS, null);
+      const saved = getSafeStorageItem(STORAGE_KEY_PROJECTS, null) || getSafeStorageItem(STORAGE_KEY_PROJECTS_LEGACY, null);
       if (saved && Array.isArray(saved)) return saved;
     } catch (err) {
       console.warn('Failed to parse saved projects:', err);
@@ -20,7 +22,7 @@ export function ProjectsProvider({ children, onProjectDeleted }) {
 
   const [lastUsedProjectId, setLastUsedProjectId] = useState(() => {
     try {
-      return getSafeStorageItem(STORAGE_KEY_LAST_PROJECT, null);
+      return getSafeStorageItem(STORAGE_KEY_LAST_PROJECT, null) || getSafeStorageItem(STORAGE_KEY_LAST_PROJECT_LEGACY, null);
     } catch {
       return null;
     }

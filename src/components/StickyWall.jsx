@@ -54,8 +54,8 @@ export function StickyWall() {
         </h3>
         <p className="empty-state-desc">
           {hasActiveFilters
-            ? 'Try adjusting or clearing your filters to see other parked notes.'
-            : 'Got a sudden idea, bug to fix, or pending work to integrate later? Press Ctrl+K or "/" to park it.'}
+            ? 'Try adjusting or clearing your filters to see other docked notes.'
+            : 'Got a sudden idea, bug to fix, or pending work to integrate later? Press Ctrl+K or "/" to dock it.'}
         </p>
         {hasActiveFilters && (
           <button

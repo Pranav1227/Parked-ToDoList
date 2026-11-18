@@ -4,24 +4,27 @@ import { migrateStorageData, normalizeNoteToV2, CURRENT_SCHEMA_VERSION } from '.
 import { getSafeStorageItem, setSafeStorageItem } from '../utils/storage';
 import { getLocalDateString } from '../utils/dateValidation';
 
-const STORAGE_KEY_STORE = 'parked_data_v2';
+const STORAGE_KEY_STORE = 'taskdock_data_v2';
+const STORAGE_KEY_STORE_LEGACY = 'parked_data_v2';
 const STORAGE_KEY_V1_LEGACY = 'parked_notes_v1';
-const STORAGE_KEY_THEME = 'parked_theme_v1';
-const STORAGE_KEY_VIEW = 'parked_view_v1';
+const STORAGE_KEY_THEME = 'taskdock_theme_v1';
+const STORAGE_KEY_THEME_LEGACY = 'parked_theme_v1';
+const STORAGE_KEY_VIEW = 'taskdock_view_v1';
+const STORAGE_KEY_VIEW_LEGACY = 'parked_view_v1';
 
 const NotesContext = createContext(null);
 
 export function NotesProvider({ children, projects = [], setProjects, registerOnProjectDeleted }) {
   // Theme state: 'light' or 'dark' (defaults to 'light')
   const [theme, setTheme] = useState(() => {
-    const saved = getSafeStorageItem(STORAGE_KEY_THEME, null);
+    const saved = getSafeStorageItem(STORAGE_KEY_THEME, null) || getSafeStorageItem(STORAGE_KEY_THEME_LEGACY, null);
     if (saved === 'dark' || saved === 'light') return saved;
     return 'light';
   });
 
   // View state: 'wall' | 'list' | 'today'
   const [view, setView] = useState(() => {
-    const saved = getSafeStorageItem(STORAGE_KEY_VIEW, 'wall');
+    const saved = getSafeStorageItem(STORAGE_KEY_VIEW, null) || getSafeStorageItem(STORAGE_KEY_VIEW_LEGACY, 'wall');
     if (saved === 'list' || saved === 'today' || saved === 'wall') return saved;
     return 'wall';
   });
@@ -29,8 +32,8 @@ export function NotesProvider({ children, projects = [], setProjects, registerOn
   // Load and migrate notes from safe storage
   const [notes, setNotes] = useState(() => {
     try {
-      // 1. Check Phase 2 storage first
-      const v2Data = getSafeStorageItem(STORAGE_KEY_STORE, null);
+      // 1. Check TaskDock v2 storage first
+      const v2Data = getSafeStorageItem(STORAGE_KEY_STORE, null) || getSafeStorageItem(STORAGE_KEY_STORE_LEGACY, null);
       if (v2Data) {
         const migrated = migrateStorageData(v2Data);
         if (migrated && Array.isArray(migrated.notes) && migrated.notes.length > 0) {
@@ -38,7 +41,7 @@ export function NotesProvider({ children, projects = [], setProjects, registerOn
         }
       }
 
-      // 2. Check Phase 1 legacy storage
+      // 2. Check legacy storage
       const v1Data = getSafeStorageItem(STORAGE_KEY_V1_LEGACY, null);
       if (v1Data) {
         const migrated = migrateStorageData(v1Data);
@@ -534,7 +537,7 @@ export function NotesProvider({ children, projects = [], setProjects, registerOn
     const downloadAnchor = document.createElement('a');
     const dateStr = getLocalDateString();
     downloadAnchor.setAttribute('href', dataStr);
-    downloadAnchor.setAttribute('download', `parked-backup-${dateStr}.json`);
+    downloadAnchor.setAttribute('download', `taskdock-backup-${dateStr}.json`);
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
@@ -624,7 +627,7 @@ export function NotesProvider({ children, projects = [], setProjects, registerOn
         }
       });
 
-      pip.document.title = 'Parked — Pin';
+      pip.document.title = 'TaskDock — Pin';
       pip.document.documentElement.setAttribute('data-theme', theme);
 
       pip.addEventListener('pagehide', () => {

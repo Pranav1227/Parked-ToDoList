@@ -58,7 +58,7 @@ export function PipPortal() {
           type="text"
           className="modal-input"
           style={{ height: '32px', fontSize: '13px', padding: '0 8px' }}
-          placeholder="Quick park task for today..."
+          placeholder="Quick dock task for today..."
           value={quickTitle}
           onChange={(e) => setQuickTitle(e.target.value)}
           autoFocus
@@ -78,7 +78,7 @@ export function PipPortal() {
       <div className="pip-list">
         {todayNotes.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '24px 8px', color: 'var(--text-secondary)', fontSize: '12.5px' }}>
-            No tasks parked for today. Star notes on your board to see them here.
+            No tasks docked for today. Star notes on your board to see them here.
           </div>
         ) : (
           todayNotes.map((note) => {

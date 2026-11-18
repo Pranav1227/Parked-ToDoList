@@ -1,4 +1,4 @@
-# Parked 📌
+# TaskDock 📌
 
 A calm, personal quick-capture to-do app with a realistic sticky note desk feel. Built with React 18, Vite, and plain CSS variables. Zero login, zero backend, zero external API calls. Everything persists privately in your browser's `localStorage`.
 
@@ -28,7 +28,7 @@ A calm, personal quick-capture to-do app with a realistic sticky note desk feel.
 - **✏️ Inline / Modal Editor**: Edit note details, priority, category, status, and due date. Esc to dismiss.
 - **↩️ Undo Toast**: Deleting a note gives you a 6-second undo window to restore it.
 - **🌗 Dark / Light Theme**: Strict calm paper desk palette with instant toggle, saved in `localStorage`.
-- **💾 Backup & Restore**: Export all notes as `parked-notes-YYYY-MM-DD.json` or import from backup.
+- **💾 Backup & Restore**: Export all notes as `taskdock-notes-YYYY-MM-DD.json` or import from backup.
 - **📱 PWA Ready**: Web app manifest, custom icon, and service worker configured for desktop installation.
 
 ---

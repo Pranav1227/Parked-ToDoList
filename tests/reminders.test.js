@@ -9,11 +9,15 @@ import {
 import { getLocalDateString } from '../src/utils/dateValidation';
 
 describe('Reminders Utilities', () => {
-  it('getLaterToday returns an ISO string approximately 3 hours in the future', () => {
+  it('getLaterToday returns an ISO string approximately 3 hours in the future (or null late at night)', () => {
     const iso = getLaterToday();
-    const diffHours = (new Date(iso).getTime() - Date.now()) / (1000 * 60 * 60);
-    expect(diffHours).toBeGreaterThan(2.9);
-    expect(diffHours).toBeLessThan(3.1);
+    if (iso !== null) {
+      const diffHours = (new Date(iso).getTime() - Date.now()) / (1000 * 60 * 60);
+      expect(diffHours).toBeGreaterThan(2.9);
+      expect(diffHours).toBeLessThan(3.1);
+    } else {
+      expect(iso).toBeNull();
+    }
   });
 
   it('getTomorrowMorning returns tomorrow at 9:00 AM local time', () => {

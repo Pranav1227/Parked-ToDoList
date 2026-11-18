@@ -1,6 +1,6 @@
 {
-  "name": "Parked — Quick-Capture Sticky Notes",
-  "short_name": "Parked",
+  "name": "TaskDock — Quick-Capture Sticky Notes",
+  "short_name": "TaskDock",
   "description": "Capture thoughts, ideas, and pending work in under 5 seconds on a calm sticky notes board.",
   "start_url": "/",
   "display": "standalone",

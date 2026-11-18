@@ -9,11 +9,11 @@ export function validateImportData(rawJson) {
   try {
     parsed = JSON.parse(rawJson);
   } catch (err) {
-    return { success: false, error: 'Invalid JSON format. Please upload a valid Parked backup file.' };
+    return { success: false, error: 'Invalid JSON format. Please upload a valid TaskDock backup file.' };
   }
 
   if (!parsed || typeof parsed !== 'object') {
-    return { success: false, error: 'The file does not contain a valid Parked backup structure.' };
+    return { success: false, error: 'The file does not contain a valid TaskDock backup structure.' };
   }
 
   let rawNotes = [];

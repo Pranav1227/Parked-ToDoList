@@ -1,4 +1,4 @@
-const CACHE_NAME = 'parked-cache-v1';
+const CACHE_NAME = 'taskdock-cache-v1';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',

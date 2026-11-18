@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
-const NOTIFICATION_LOCK_PREFIX = 'parked_notified_lock_';
-const CHANNEL_NAME = 'parked_reminders_sync_channel';
+const NOTIFICATION_LOCK_PREFIX = 'taskdock_notified_lock_';
+const CHANNEL_NAME = 'taskdock_reminders_sync_channel';
 
 export function useReminders(notes, updateNote) {
   const [permission, setPermission] = useState(() => {
@@ -172,15 +172,15 @@ export function useReminders(notes, updateNote) {
       }
 
       if (newlyDueToNotify.length === 1) {
-        fireSystemNotification('Parked Reminder Due', {
+        fireSystemNotification('TaskDock Reminder Due', {
           body: newlyDueToNotify[0].title,
-          tag: `parked-${newlyDueToNotify[0].id}`,
+          tag: `taskdock-${newlyDueToNotify[0].id}`,
         });
       } else {
         const preview = newlyDueToNotify.map((n) => `• ${n.title}`).slice(0, 3).join('\n');
-        fireSystemNotification(`Parked: ${newlyDueToNotify.length} reminders due`, {
+        fireSystemNotification(`TaskDock: ${newlyDueToNotify.length} reminders due`, {
           body: preview,
-          tag: 'parked-grouped-reminders',
+          tag: 'taskdock-grouped-reminders',
         });
       }
     }
