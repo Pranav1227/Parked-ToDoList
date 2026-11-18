@@ -392,7 +392,7 @@ export function NoteForm({
             ref={inputRef}
             type="text"
             className="quick-add-main-input"
-            placeholder="Park an idea, bug, or pending work... (Enter to save)"
+            placeholder="Dock an idea, bug, or pending work... (Enter to save)"
             value={title}
             onChange={handleTitleChange}
             onKeyDown={handleKeyDownInTitle}
@@ -414,8 +414,8 @@ export function NoteForm({
                 disabled={!title.trim()}
                 title="Save note (Enter)"
               >
-                <span>Park</span>
-                <CornerDownLeft size={13} strokeWidth={2.5} />
+                <span>Dock</span>
+                <CornerDownLeft size={13} strokeWidth={2.5} className="dock-shortcut-icon" />
               </button>
             )}
           </div>

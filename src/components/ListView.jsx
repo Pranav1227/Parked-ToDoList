@@ -140,6 +140,38 @@ export function ListView() {
                     <ContextField context={note.context} compact />
                   </div>
                 )}
+
+                {/* Mobile metadata preview (visible on screens <= 768px) */}
+                <div className="list-mobile-chips-row" aria-hidden="true">
+                  <span
+                    className="category-tag-badge-sm"
+                    style={{
+                      backgroundColor: categoryColor,
+                      color: '#2B2B2B',
+                    }}
+                  >
+                    {note.category}
+                  </span>
+                  <span
+                    className="priority-dot-sm"
+                    style={{ backgroundColor: priority.color }}
+                    title={`${priority.label} priority`}
+                  />
+                  {project && (
+                    <span className="list-project-pill-sm">
+                      <span
+                        className="project-dot"
+                        style={{ backgroundColor: projectDotColor }}
+                      />
+                      <span>{project.name}</span>
+                    </span>
+                  )}
+                  {formattedDueDate && (
+                    <span className={`list-due-sm ${isOverdue ? 'overdue' : ''}`}>
+                      {formattedDueDate}
+                    </span>
+                  )}
+                </div>
               </div>
 
               {/* Project */}
