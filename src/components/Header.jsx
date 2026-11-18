@@ -94,12 +94,16 @@ export function Header({ quickAddInputRef, permission, onRequestPermission }) {
     <header className="header-wrapper" role="banner">
       <div className="header-inner">
         {/* Logo and Branding */}
-        <div className="logo-area">
-          <div className="logo-icon" aria-hidden="true">
-            <LayoutGrid size={18} strokeWidth={2.5} />
-          </div>
+        <div className="logo-area" title="TaskDock">
+          <img
+            src="/favicon-transparent.png"
+            alt="TaskDock logo"
+            className="logo-mark-img"
+            width="32"
+            height="32"
+          />
           <h1 className="logo-title">
-            TaskDock
+            <span className="logo-text-task">Task</span><span className="logo-text-dock">Dock</span>
             <span className="logo-tag">Quick Capture</span>
           </h1>
         </div>

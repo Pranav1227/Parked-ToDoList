@@ -1,9 +1,17 @@
-const CACHE_NAME = 'taskdock-cache-v1';
+const CACHE_NAME = 'taskdock-cache-v2';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
   '/manifest.webmanifest',
   '/icon.svg',
+  '/favicon.ico',
+  '/favicon.png',
+  '/favicon-transparent.png',
+  '/apple-touch-icon.png',
+  '/icon-192.png',
+  '/icon-512.png',
+  '/logo.png',
+  '/logo-transparent.png',
 ];
 
 self.addEventListener('install', (event) => {
